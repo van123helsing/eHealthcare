@@ -1,0 +1,32 @@
+server:
+  port: 5020
+  use-forward-headers: true
+spring:
+  application:
+    name: scheduler-service
+  flyway:
+    url: jdbc:postgresql://localhost:5432/schedules
+    user: "postgres"
+    password: "admin"
+    locations: filesystem:C:/Users/js8649/Documents/spring-cloud-microservices-master/scheduler-service/src/main/resources/db/migration
+  sql.init.mode: always
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/schedules"
+    password: "admin"
+    username: "postgres"
+eureka:
+  client:
+    instance:
+      prefer-ip-address: true
+      hostname: localhost
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:5001/eureka/}

@@ -1,0 +1,35 @@
+server:
+  port: 5010
+  use-forward-headers: true
+application:
+  jwt:
+    secretKey: "qwertzuiopasdfghjklyxcvbnm1234567890"
+    tokenPrefix: "Bearer "
+spring:
+  flyway:
+    url: jdbc:postgresql://localhost:5432/users
+    user: "postgres"
+    password: "admin"
+    locations: filesystem:C:/Users/js8649/Documents/spring-cloud-microservices-master/auth-service/src/main/resources/db/migration
+  application:
+    name: auth-service
+  sql.init.mode: always
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/users"
+    password: "admin"
+    username: "postgres"
+    testOnBorrow: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 1
+    max-active: 15
+    max-idle: 10
+    max-wait: 8000
+eureka:
+  client:
+    instance:
+      prefer-ip-address: true
+      hostname: localhost
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:5001/eureka/}
